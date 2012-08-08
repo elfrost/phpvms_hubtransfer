@@ -48,7 +48,7 @@ class HubTransfer extends CodonModule
                 $reqcheck = HubTransferData::CheckRequest(Auth::$userinfo->pilotid); //checking if there is already a request with the logged in pilot's id
                 if ($reqcheck > 0)
                   {
-                   $this->set('error', 'You already have a hub transfere request submitted for your ID. We will notify you when the staff team reviews your request.');
+                   $this->set('error', 'You already have a hub transfer request submitted for your ID.');
                    $this->render('hubtransfer/hubtransfer_error.tpl');
                    $hubs = HubTransferData::GetAllHubs(array());
                    $this->set('all_hubs', $hubs);
