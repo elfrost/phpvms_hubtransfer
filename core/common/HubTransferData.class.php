@@ -99,6 +99,13 @@ class HubTransferData extends CodonData
 		
 	}
 
+	public function delete($id)
+	{
+		$sql = "DELETE FROM hubtransfer WHERE pilotid='$id'";
+		$query = DB::query($sql);
+		return mysql_affected_rows();
+	}
+
 }
 
 

@@ -1,5 +1,5 @@
 <h3>Hub Transfer Request Admin</h3>
-<?php echo $msg ?>
+<?php echo $msg ?> <br>
 <?php 
 if ($all)
 {
@@ -18,6 +18,7 @@ if ($all)
 	<th>Reason</th>
 	<th>Status</th>
 	<th>Set Status</th>
+	<th>Delete</th>
 </tr>
 </thead>
 <tbody>
@@ -58,6 +59,7 @@ foreach($all as $item)
 	<input type="submit" name="submit" value="Deny" onClick="parent.location='<?php echo SITE_URL?>/admin/index.php/hubtransfer/deny?id=<?php echo $item->pilotid?>'"/>
 
 	<input type="submit" name="submit" value="Pending" onClick="parent.location='<?php echo SITE_URL?>/admin/index.php/hubtransfer/pending?id=<?php echo $item->pilotid?>'"/></td>
+<td><input type="submit" name="submit" value="Delete" onClick="parent.location='<?php echo SITE_URL?>/admin/index.php/hubtransfer/delete?id=<?php echo $item->pilotid?>'"/></td>
 
 <?php
 }

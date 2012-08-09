@@ -49,8 +49,7 @@ class HubTransfer extends CodonModule {
             HubTransferData::approve($id);
             HubTransferData::ChangeHub($data); //here we call for the hub change and below send an email
             $subject = SITE_NAME. ' - Hub Transfer Information';
-            $msg     = 'Your request has been approved and your hub has now been changed as per your submitted request. <br>
-            .';
+            $msg     = 'Your request has been approved and your hub has now been changed as per your submitted request.';
             Util::SendEmail($email, $subject, $msg);
             //reloading the list
             $requests = HubTransferData::GetAllRequests(array());
@@ -65,7 +64,7 @@ class HubTransfer extends CodonModule {
             $id = $this->get->id;
             HubTransferData::deny($id);
             $subject = SITE_NAME. ' - Hub Transfer Information';
-            $msg     = "Your hub has now been changed as per your submitted request.<br> Staff";
+            $msg     = "Your request for hub transfer has been denied. Please contact us for more information. Thank you.";
             Util::SendEmail($email, $subject, $msg);
             //reload the list below, for ease of use
             $requests = HubTransferData::GetAllRequests(array());
@@ -82,6 +81,26 @@ class HubTransfer extends CodonModule {
             $this->set('all', $requests);
             $this->set('msg', 'The status has been changed.');
             $this->render('hubtransfer/hubtransfer_admin_index.tpl');
+        }
+
+    public function delete()
+        {
+            $id = $this->get->id;
+            $get_msg   = HubTransferData::delete($id);
+            if (mysql_affected_rows() == -1)
+                {
+                $requests = HubTransferData::GetAllRequests(array());
+                $this->set('all', $requests);
+                $this->set('msg', 'Request wasn\'t de;eted. Please use the phpVMS forums to get support.');
+                $this->render('hubtransfer/hubtransfer_admin_index.tpl');
+
+                }else
+                {
+                $requests = HubTransferData::GetAllRequests(array());
+                $this->set('all', $requests);
+                $this->set('msg', 'Request successfuly deleted.');
+                $this->render('hubtransfer/hubtransfer_admin_index.tpl');
+                 }
         }
 
 
