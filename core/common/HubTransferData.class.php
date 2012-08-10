@@ -29,7 +29,7 @@ class HubTransferData extends CodonData
 	public function GetAllHubs()  //used to get all the hubbs. Notice that the we skip the current hub as there is no point in displaying it
 	{
 		$pilot_hub = Auth::$userinfo->hub; 
-		$query = "SELECT icao FROM ' . TABLE_PREFIX . 'airports  WHERE hub='1' AND icao!= '$pilot_hub'";
+		$query = "SELECT icao FROM " . TABLE_PREFIX . "airports  WHERE hub='1' AND icao!= '$pilot_hub'";
 		$sql   = DB::get_results($query);
 		return $sql;
 
@@ -50,7 +50,7 @@ class HubTransferData extends CodonData
 
 	public function GetAllRequests () //gets all the information for admin panel by joining the hubtransfer with the pilots table for other info
 	{
-		$sql   = "SELECT hubtransfer.pilotid,
+		$sql   = 'SELECT hubtransfer.pilotid,
 						' . TABLE_PREFIX . 'pilots.firstname,
 						 ' . TABLE_PREFIX . 'pilots.lastname,
 						 ' . TABLE_PREFIX . 'pilots.email,
@@ -61,7 +61,7 @@ class HubTransferData extends CodonData
 						 hubtransfer.reason,
 						 hubtransfer.status
 				  FROM hubtransfer JOIN ' . TABLE_PREFIX . 'pilots 
-				  ON hubtransfer.pilotid = ' . TABLE_PREFIX . 'pilots.pilotid";
+				  ON hubtransfer.pilotid = ' . TABLE_PREFIX . 'pilots.pilotid';
 
 
 
@@ -82,7 +82,7 @@ class HubTransferData extends CodonData
 		$pilotid = $data['pilotid'];
 		$hub 	 = $data['hub'];
 		$email 	 = $data['email'];
-		$sql     = "UPDATE ' . TABLE_PREFIX . 'pilots SET hub='$hub' WHERE pilotid='$pilotid'";
+		$sql     = "UPDATE " . TABLE_PREFIX . "pilots SET hub='$hub' WHERE pilotid='$pilotid'";
 		$query   = DB::query($sql);
 	}
 
