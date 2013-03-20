@@ -73,7 +73,7 @@ class HubTransfer extends CodonModule
               }
         }
 
-    public function SendMail()
+    protected function SendMail()
         {
             //sending email to pilot
             $subject = SITE_NAME . ' Hub Transfer Request Submitted';
